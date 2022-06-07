@@ -38,11 +38,15 @@ This work was partially funded by the Center for Statistics and Applications in 
 
 # Outline
 
-- Introduction
+- **Introduction** Firearms and Toolmarks Identification
 
-- Cartridge Case Comparison Pipelines
+- **Paper \#1** A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package
 
-- Visual Diagnostics
+- **Paper \#2** Diagnostic Tools for Cartridge Case Comparison Algorithms
+
+- **Paper \#3** A Novel Cartridge Case Comparison Pipeline
+
+- **Conclusions**
 
 ---
 
@@ -50,71 +54,191 @@ class: center, middle
 
 # Introduction
 
----
-
-# Cartridge Cases
+## Firearms and Toolmarks Identification
 
 ---
 
-# Breech Face Impressions
+# The Firing Process
 
 ---
 
-# Forensic Examinations
+# Firearms and Toolmarks Examinations
+
 
 ---
 
-# Forensic Comparison Algorithms
+# Why Should F &amp; T Examinations change?
 
 Cite NAS, PCAST
 
-Creation of CSAFE
+---
+
+class: center, middle
+
+# Paper \#1
+
+## A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package
+
+### Submitted to the R Journal
 
 ---
 
-# Data Analysis Pipelines
+# Introduction
 
-Cite Kiegan's work
+Cite Kiegan's dissertation
+
+---
+
+# What we've done
+
+---
+
+# Modularization of Data Analysis Pipelines
+
+- Modularization
+
+---
+
+# The cmcR package
+
+- "Tidy" functionality
+
+---
+
+# What we need to do
+
+- Resubmission \#2
+
+- Cartridge case data to ISU DataShare
 
 ---
 
 class: center, middle
 
-# Cartridge Case Comparison Pipelines
+# Paper \#2
+
+## Diagnostic Tools for Cartridge Case Comparion Algorithms
+
+### To be submitted to [...]
 
 ---
 
-class: center, middle
+# Introduction
+
+---
+
+# What we've done
+
+---
 
 # Visual Diagnostics
 
 ---
 
+# The `impressions` package
 
+---
+
+# Interactive Diagnostics
+
+---
+
+# cartridgeInvestigatoR
+
+---
+
+# What we need to do
+
+---
+
+class: center, middle
+
+# Paper \#3
+
+## A Novel Cartridge Case Comparison Pipeline
+
+### To be submitted to [...]
+
+---
+
+# Introduction
+
+- Utilize image processing and clustering algorithms to extract new features from cartridge case scans.
+
+- Train a classifier (decision tree or random forest)
+
+---
+
+# What we've done
+
+---
+
+# Morphological Operations
+
+- *"Some regions on the sample, such as the primer roll-off, are not informative, but may significantly affect similarity results if they are compared."* &lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[[1] "Computer-Aided Firearm and Toolmark Analysis" by Johannes Soons of NIST]
+
+- `cmcR::preProcess_erode` function
+
+---
+
+# DBSCAN Algorithm
+
+- Density-Based Spatial Clustering of Applications with Noise
+
+---
+
+# Features based on Visual Diagnostics
+
+---
+
+# Train/test procedure
+
+---
+
+# What we need to do
+
+- Updates to the cmcR package
+
+  - New `preProcess_`, `comparison_`, and `decision_` functions
+
+  - Use `caret` (Classification And REgression Training) and/or `tidymodels` R packages to implement train/test procedure [Kuh22; KW20]
+
+- DFSC TopMatch Data Set
+
+  - Data in Brief
+
+  - Validation of pipeline using [\#] scans
+
+---
+class: center, middle
+
+# Conclusions
 
 ---
 class: primary-blue
 # References
 
-Fadul, T. et al. (2011). _An Empirical Study to Improve the Scientific
-Foundation of Forensic Firearm and Tool Mark Identification Utilizing
-10 Consecutively Manufactured Slides_.
 
-Hofmann, H. et al. (2020). _x3ptools: Tools for Working with 3D Surface
-Measurements_. R package version 0.0.3.
+```
+## Warning in `[[.BibEntry`(x, ind): subscript out of bounds
+```
 
-Peng, R. D. (2011). "Reproducible Research in Computational Science".
-In: _Science_ 334.6060, pp. 1226-1227.
+Kuhn, M. (2022). _caret: Classification and Regression Training_. R
+package version 6.0-91.
 
-Song, J. (2013). "Proposed â€œNIST Ballistics Identification System
-(NBIS)â€ Based on 3D Topography Measurements on Correlation Cells". In:
-_American Firearm and Tool Mark Examiners Journal_ 45.2, p. 11.
+Kuhn, M. et al. (2020). _Tidymodels: a collection of packages for
+modeling and machine learning using tidyverse principles._
 
-Tong, M. et al. (2015). "An Improved Algorithm of Congruent Matching
-Cells (CMC) Method for Firearm Evidence Identifications". In: _Journal
-of Research of the National Institute of Standards and Technology_ 120,
-p. 102. DOI:
-[10.6028/jres.120.008](https://doi.org/10.6028%2Fjres.120.008).
+---
+class: primary-blue
+# References
+
+
+```
+## Warning in `[[.BibEntry`(x, ind): subscript out of bounds
+```
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

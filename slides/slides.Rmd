@@ -13,6 +13,7 @@ output:
 ---
 
 ```{r, load_refs, include=FALSE, cache=FALSE}
+library(RefManageR)
 # remotes::install_github("ROpenSci/bibtex")
 RefManageR::BibOptions(check.entries = FALSE,
                        bib.style = "authoryear",
@@ -42,11 +43,15 @@ This work was partially funded by the Center for Statistics and Applications in 
 
 # Outline
 
-- Introduction
+- **Introduction** Firearms and Toolmarks Identification
 
-- Cartridge Case Comparison Pipelines
+- **Paper \#1** A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package
 
-- Visual Diagnostics
+- **Paper \#2** Diagnostic Tools for Cartridge Case Comparison Algorithms
+
+- **Paper \#3** A Novel Cartridge Case Comparison Pipeline
+
+- **Conclusions**
 
 ---
 
@@ -54,54 +59,183 @@ class: center, middle
 
 # Introduction
 
----
-
-# Cartridge Cases
+## Firearms and Toolmarks Identification
 
 ---
 
-# Breech Face Impressions
+# The Firing Process
 
 ---
 
-# Forensic Examinations
+# Firearms and Toolmarks Examinations
+
 
 ---
 
-# Forensic Comparison Algorithms
+# Why Should F & T Examinations change?
 
 Cite NAS, PCAST
 
-Creation of CSAFE
+---
+
+class: center, middle
+
+# Paper \#1
+
+## A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package
+
+### Submitted to the R Journal
 
 ---
 
-# Data Analysis Pipelines
+# Introduction
 
-Cite Kiegan's work
+Cite Kiegan's dissertation
+
+---
+
+# What we've done
+
+---
+
+# Modularization of Data Analysis Pipelines
+
+- Modularization
+
+---
+
+# The cmcR package
+
+- "Tidy" functionality
+
+---
+
+# What we need to do
+
+- Resubmission \#2
+
+- Cartridge case data to ISU DataShare
 
 ---
 
 class: center, middle
 
-# Cartridge Case Comparison Pipelines
+# Paper \#2
+
+## Diagnostic Tools for Cartridge Case Comparion Algorithms
+
+### To be submitted to [...]
 
 ---
 
-class: center, middle
+# Introduction
+
+---
+
+# What we've done
+
+---
 
 # Visual Diagnostics
 
 ---
 
+# The `impressions` package
 
+---
+
+# Interactive Diagnostics
+
+---
+
+# cartridgeInvestigatoR
+
+---
+
+# What we need to do
+
+---
+
+class: center, middle
+
+# Paper \#3
+
+## A Novel Cartridge Case Comparison Pipeline
+
+### To be submitted to [...]
+
+---
+
+# Introduction
+
+- Utilize image processing and clustering algorithms to extract new features from cartridge case scans.
+
+- Train a classifier (decision tree or random forest)
+
+---
+
+# What we've done
+
+---
+
+# Morphological Operations
+
+- *"Some regions on the sample, such as the primer roll-off, are not informative, but may significantly affect similarity results if they are compared."* <sup>1</sup>
+
+.footnote[[1] "Computer-Aided Firearm and Toolmark Analysis" by Johannes Soons of NIST]
+
+- `cmcR::preProcess_erode` function
+
+---
+
+# DBSCAN Algorithm
+
+- Density-Based Spatial Clustering of Applications with Noise
+
+---
+
+# Features based on Visual Diagnostics
+
+---
+
+# Train/test procedure
+
+---
+
+# What we need to do
+
+- Updates to the cmcR package
+
+  - New `preProcess_`, `comparison_`, and `decision_` functions
+
+  - Use `caret` (Classification And REgression Training) and/or `tidymodels` R packages to implement train/test procedure `r Citep(myBib,c("caret","tidymodels"))`
+
+- DFSC TopMatch Data Set
+
+  - Data in Brief
+
+  - Validation of pipeline using [\#] scans
+
+---
+class: center, middle
+
+# Conclusions
 
 ---
 class: primary-blue
 # References
 
 ```{r refs1, echo=FALSE, results="asis"}
-RefManageR::NoCite(myBib,1:5)
-RefManageR::PrintBibliography(myBib)
+# RefManageR::NoCite(myBib,1:5)
+RefManageR::PrintBibliography(myBib,start = 1,end = 6)
+```
+
+---
+class: primary-blue
+# References
+
+```{r refs2, echo=FALSE, results="asis"}
+# RefManageR::NoCite(myBib,1:5)
+RefManageR::PrintBibliography(myBib,start = 7,end = 7)
 ```
 

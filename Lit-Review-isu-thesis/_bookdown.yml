@@ -1,0 +1,10 @@
+book_filename: thesis
+repo: https://github.com/username/thesis-repo-name
+output_dir: docs
+clean: [bookdown.bbl]
+rmd_files: [
+  "index.Rmd",
+  "chapters/01_example.Rmd",
+  "appendices/01_appendix.Rmd",
+  "appendices/02_appendix.Rmd"
+]

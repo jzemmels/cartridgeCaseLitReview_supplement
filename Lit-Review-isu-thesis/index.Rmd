@@ -1,0 +1,54 @@
+---
+title: "Thesis title (not title case)"
+author: "Your name"
+site: bookdown::bookdown_site
+output: bookdown::pdf_book
+documentclass: isuthesis
+fontsize: 11pt
+bibliography: [resources/refs1.bib, resources/refs2.bib]
+biblio-style: apa
+url: 'http://your.website.com/thesis-repo-name'
+github-repo: username/thesis-repo-name
+dedicate: true
+degree: DOCTOR OF PHILOSOPHY
+level: doctoral
+formal: dissertation
+major: Statistics
+mprof:
+  - Your Major Prof
+member:
+  - Committee Member
+  - Committee Member
+  - Committee Member
+  - Committee Member
+abstract: |
+  This is your abstract.
+---
+
+```{r setup, include=FALSE}
+options(
+  dplyr.print_min = 6, dplyr.print_max = 6, width = 70,
+  digits = 3, htmltools.dir.version = FALSE
+)
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE
+)
+```
+
+
+# PROBLEM STATEMENT
+
+State the problem.
+
+# OVERVIEW
+
+## Background info
+
+1. You
+2. can
+3. use
+4. lists

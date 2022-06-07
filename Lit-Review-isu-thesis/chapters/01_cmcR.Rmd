@@ -1,0 +1,31 @@
+# A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package
+
+```{block, type='paperinfo_'}
+submitted to the *R Journal*
+```
+```{block, type='paperauthor_'}
+Joseph Zemmels, Susan VanderPlas, and Heike Hofmann
+```
+
+## Abstract {-}
+
+Scientific research is driven by our ability to use methods, procedures, and materials from
+previous studies and further this research by adding to it. As the need for computationally-intensive
+methods to analyze large amounts of data grows, the criteria needed to achieve reproducibility, specif-
+ically computational reproducibility, have become more sophisticated. In general, prosaic descriptions
+of algorithms are not detailed or precise enough to ensure complete reproducibility of a method.
+Results may be sensitive to conditions not commonly specified in written-word descriptions such
+as implicit parameter settings or the programming language used. To achieve true computational
+reproducibility, it is necessary to provide all intermediate data and code used to produce published
+results. In this paper, we consider a class of algorithms developed by researchers at the National Insti-
+tute of Standards and Technology (NIST) to perform firearm evidence identification on cartridge case
+evidence known as the Congruent Matching Cells (CMC) methods. To date, only textual descriptions
+of these algorithms have been published. We introduce the first open-source implementation of the
+Congruent Matching Cells methods in the R package cmcR. We have structured the cmcR package as
+a set of sequential, modularized functions intended to ease the process of parameter experimentation.
+We use cmcR and a novel variance ratio statistic to explore the CMC methodology and demonstrate
+how to fill in the gaps when computationally ambiguous descriptions of algorithsm are provided.
+
+## Introduction
+
+Paper contents here

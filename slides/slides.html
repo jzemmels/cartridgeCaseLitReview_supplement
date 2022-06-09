@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>A Cartridge Case Analysis Pipeline</title>
+    <title>A Cartridge Case Comparison Pipeline</title>
     <meta charset="utf-8" />
     <meta name="author" content="Joseph Zemmels" />
     <meta name="date" content="2022-06-17" />
@@ -15,9 +15,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# A Cartridge Case Analysis Pipeline
+# A Cartridge Case Comparison Pipeline
+## Oral Preliminary Exam
 ### Joseph Zemmels
-### Center for Statistics and Applications in Forensic Evidence
+### Iowa State University: Center for Statistics and Applications in Forensic Evidence
 ### 2022-06-17
 
 ---
@@ -44,7 +45,7 @@ This work was partially funded by the Center for Statistics and Applications in 
 
 - **Paper \#2** Diagnostic Tools for Cartridge Case Comparison Algorithms
 
-- **Paper \#3** A Novel Cartridge Case Comparison Pipeline
+- **Paper \#3** Automatic Matching of Cartridge Case Impressions
 
 - **Conclusions**
 
@@ -58,18 +59,106 @@ class: center, middle
 
 ---
 
-# The Firing Process
+## The Firing Process
+
+As the bullet travels down the barrel, the cartridge case travels backwards.
+
+&lt;img src="images/firingCartridgeDiagram.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+
+Contact with the back wall of the barrel leaves *breech face impressions*.
+
+&lt;img src="images/realCartridgeCaseImage.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+
+Similarity of breech face impressions on two cartridge cases suggests they were fired from the same gun.
 
 ---
 
-# Firearms and Toolmarks Examinations
+## Firearms and Toolmarks (F &amp; T) Examinations
 
+A *comparison microscope* combines two compound microscopes into a single view [Zheng et al. (2014) citation].
+
+&lt;img src="images/comparisonMicroscope.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+Each stage is independently translated or rotated to find optimal matching position.
 
 ---
 
-# Why Should F &amp; T Examinations change?
+## Firearms and Toolmarks (F &amp; T) Examinations
 
-Cite NAS, PCAST
+- **Class characteristics:** features associated with manufacturer of the firearm
+
+  - E.g., size of ammunition, width and twist direction of barrel rifling
+  
+  - Used to narrow the relevant population of potential firearms
+
+- **Individual characteristics:** markings attributed to imperfections in the firearm surface
+  
+- **Subclass characteristics:** markings that are reproduced across a sub-group of firearms
+
+  - E.g., barrels milled by the same machine may share similar markings.
+  
+  - Difficult to distinguish individual from subclass characteristics.
+
+- "Sufficient" agreement of class and individual characteristics suggests that the evidence originated from the same firearm.&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[[1] AFTE citation here]
+
+---
+
+## AFTE Range of Conclusions
+
+1. **Identification**: Agreement of a combination of individual characteristics and all discernible class characteristics where the extent of agreement exceeds that which can occur in the comparison of toolmarks made by different tools and is consistent with the agreement demonstrated by toolmarks known to have been produced by the same tool.
+
+2. **Inconclusive**:
+
+  2.1 Some agreement of individual characteristics and all discernible class characteristics, but insufficient for an identification.
+
+  2.2 Agreement of all discernible class characteristics without agreement or disagreement of individual characteristics due to an absence, insufficiency, or lack of reproducibility.
+
+  2.3 Agreement of all discernible class characteristics and disagreement of individual characteristics, but insufficient for an elimination.
+
+3. **Elimination**: Significant disagreement of discernible class characteristics and/or individual characteristics.
+
+4. **Unsuitable**: Unsuitable for examination.
+
+---
+
+## Why Change F &amp; T Examinations?
+
+- "Sufficient studies have not been done to understand the reliability and repeatability of the methods."&lt;sup&gt;1&lt;/sup&gt;
+
+- "A fundamental problem with toolmark and firearms analysis is the lack of a precisely defined process."&lt;sup&gt;1&lt;/sup&gt;
+
+- "Automated techniques capable of enhancing forensic technologies" should be developed.&lt;sup&gt;1&lt;/sup&gt;
+
+- "Firearms analysis currently falls short of the criteria for foundational validity."&lt;sup&gt;2&lt;/sup&gt;
+
+- Efforts should be made to "convert firearms analysis from a subjective method to an objective method ... [which] would involve developing and testing image-analysis algorithms for comparing the similarity of toolmarks..."&lt;sup&gt;2&lt;/sup&gt;
+
+.footnote[[1] NAS report, [2] PCAST report]
+
+---
+
+## F &amp; T Comparison Algorithms
+
+- *Automatic Matching of of Bullet Land Impressions* [HHC17]
+
+- *Adapting the Chumbley Score to Match Striae on Land Engraved Areas (LEAs) of Bullets* [KH18]
+
+- *A Fully Automatic Method for Comparison Cartridge Case Images* [TE18]
+
+- Riva and Champod
+
+- Riva et al.
+
+- Song (2013)
+
+---
+
+## Data Format
+
+&lt;img src="images/TopMatchSystem7.png" width="50%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -79,37 +168,37 @@ class: center, middle
 
 ## A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package
 
-### Submitted to the R Journal
+### Submitted to *The R Journal*
 
 ---
 
-# Introduction
+## Motivation
 
 Cite Kiegan's dissertation
 
 ---
 
-# What we've done
+## What we've done
 
 ---
 
-# Modularization of Data Analysis Pipelines
+## Modularization of Data Analysis Pipelines
 
 - Modularization
 
 ---
 
-# The cmcR package
+## The cmcR package
 
 - "Tidy" functionality
 
 ---
 
-# What we need to do
+## What we need to do
 
 - Resubmission \#2
 
-- Cartridge case data to ISU DataShare
+- Cartridge case data published on Figshare or ISU DataShare
 
 ---
 
@@ -119,35 +208,35 @@ class: center, middle
 
 ## Diagnostic Tools for Cartridge Case Comparion Algorithms
 
-### To be submitted to [...]
+### To be submitted to *Journal of Computational and Graphical Statistics*
 
 ---
 
-# Introduction
+## Motivation
 
 ---
 
-# What we've done
+## What we've done
 
 ---
 
-# Visual Diagnostics
+## Visual Diagnostics
 
 ---
 
-# The `impressions` package
+## The `impressions` package
 
 ---
 
-# Interactive Diagnostics
+## Interactive Diagnostics
 
 ---
 
-# cartridgeInvestigatoR
+## The `cartridgeInvestigatoR` app
 
 ---
 
-# What we need to do
+## What we need to do
 
 ---
 
@@ -155,13 +244,13 @@ class: center, middle
 
 # Paper \#3
 
-## A Novel Cartridge Case Comparison Pipeline
+## Automatic Matching of Cartridge Case Impressions
 
-### To be submitted to [...]
+### To be submitted to *The Journal of Data Science, Statistics, and Visualizations*
 
 ---
 
-# Introduction
+## Motivation
 
 - Utilize image processing and clustering algorithms to extract new features from cartridge case scans.
 
@@ -169,11 +258,11 @@ class: center, middle
 
 ---
 
-# What we've done
+## What we've done
 
 ---
 
-# Morphological Operations
+## Morphological Operations
 
 - *"Some regions on the sample, such as the primer roll-off, are not informative, but may significantly affect similarity results if they are compared."* &lt;sup&gt;1&lt;/sup&gt;
 
@@ -183,21 +272,21 @@ class: center, middle
 
 ---
 
-# DBSCAN Algorithm
+## DBSCAN Algorithm
 
 - Density-Based Spatial Clustering of Applications with Noise
 
 ---
 
-# Features based on Visual Diagnostics
+## Features based on Visual Diagnostics
 
 ---
 
-# Train/test procedure
+## Train/test procedure
 
 ---
 
-# What we need to do
+## What we need to do
 
 - Updates to the cmcR package
 
@@ -225,11 +314,24 @@ class: primary-blue
 ## Warning in `[[.BibEntry`(x, ind): subscript out of bounds
 ```
 
+Hare, E. et al. (2017). "Automatic Matching of Bullet Land
+Impressions". In: _The Annals of Applied Statistics_ 11.4, pp.
+2332-2356.
+
+Krishnan, G. et al. (2018). "Adapting the Chumbley Score to Match
+Striae on Land Engraved Areas (LEAs) of Bullets, ". In: _Journal of
+Forensic Sciences_ 64.3. &lt;URL:
+https://doi.org/10.1111/1556-4029.13950&gt;, pp. 728-740.
+
 Kuhn, M. (2022). _caret: Classification and Regression Training_. R
 package version 6.0-91.
 
 Kuhn, M. et al. (2020). _Tidymodels: a collection of packages for
 modeling and machine learning using tidyverse principles._
+
+Tai, X. H. et al. (2018). "A Fully Automatic Method for Comparing
+Cartridge Case Images,". In: _Journal of Forensic Sciences_ 63.2, pp.
+440-448.
 
 ---
 class: primary-blue

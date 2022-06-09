@@ -3,7 +3,7 @@
   --green: #00833e;
   --cyan: #40b4e5;
   --red: #cf0a2c;
-  --grey: #8a8a8d;
+  --grey: #323235;
   --white: #ffffff;
   --black: #000000;
 }
@@ -88,10 +88,14 @@
 }
 
 .title-slide.inverse > h1:first-of-type {
-  vertical-align: middle;
+  vertical-align: left;
   color: var(--blue);
 }
 .title-slide > h1 { /* Title */
+  color: var(--blue);
+  text-align: left;
+}
+.title-slide > h2:first-of-type { /* Sub-Title */
   color: var(--blue);
   text-align: left;
 }
@@ -99,7 +103,7 @@
   color: var(--blue);
   text-align: left;
 }
-.title-slide > h3:nth-of-type(2) { /* Date */
+.title-slide > h3 { /* Date */
   color: var(--blue);
   font-size: 90%;
   text-align: left;
@@ -144,7 +148,7 @@ h1, h2, h3 {
 a:hover {
   text-decoration:underline;
 }
-a:link {  
+a:link {
   color: var(--blue) !important;
 }
 

@@ -296,9 +296,9 @@ Both of these reports recommend that automatic image-analysis algorithms should 
 
 ## F & T Comparison Algorithms
 
-- Algorithms are also evidence-to-decision (or score) pipelines.
-
 - Many algorithms exist to compare F & T evidence `r Citep(myBib,c("song_proposed_2013","Riva2014","Roth2015","hare_automatic_2016","Krishnan2018","tai_fully_2018","Riva2020"))`
+
+- Algorithms are also evidence-to-decision (or score) pipelines.
 
 - Pipelines can be decomposed into modular "pieces." 
 

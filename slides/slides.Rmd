@@ -56,6 +56,10 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.align = 'center')
 ```
 
+???
+Hi, everyone. Thank you for being here.
+I will discuss A Cartridge Case Comparison Pipeline
+
 ---
 
 # Acknowledgements
@@ -63,6 +67,9 @@ knitr::opts_chunk$set(echo = FALSE,
 ## Funding statement
 
 This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
+
+???
+Here's the standard CSAFE acknowledgement
 
 ---
 
@@ -79,6 +86,11 @@ This work was partially funded by the Center for Statistics and Applications in 
   - Creative Component: *Open-source implementation of the Congruent Matching Cells method for cartridge case identification*
   
 - I hope to teach Statistics and Data Science at a post-secondary institution in the Denver area.
+
+???
+A bit about me:
+I am originally from the Twin Cities in Minnesota.
+I completed my undergraduate degree in Math and Math Education at Winona State University
 
 
 ---
@@ -1415,3 +1427,67 @@ The *common source* score-based likelihood ratio (SLR) is:
 $$\delta_{CS}(\pmb{u}_x, \pmb{u}_y) = \frac{g(C(\pmb{u}_x, \pmb{u}_y) | H_p)}{g(C(\pmb{u}_x, \pmb{u}_y) | H_d)}$$
 
 Commonly, $C$ is a complex function (e.g., mapping two cartridge case scans to a match class probability) and $g$ is estimated with data (e.g., KDE).
+
+---
+
+### cartridgeInvestigatR: Introduction
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatRIntro.png")
+```
+
+---
+
+### cartridgeInvestigatR: Import
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_import.png")
+```
+
+---
+
+### cartridgeInvestigatR: 3D Visualization
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_compareX3Ps.png")
+```
+
+---
+
+### cartridgeInvestigatR: Preprocess
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_preprocess.png")
+```
+
+---
+
+### cartridgeInvestigatR: Comparison Parameters
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_comparisonParameters.png")
+```
+
+---
+
+### cartridgeInvestigatR: Comparison Results
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_comparisonResults.png")
+```
+
+---
+
+### cartridgeInvestigatR: Custom Cell
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_customCell.png")
+```
+
+---
+
+### cartridgeInvestigatR: Scoring
+
+```{r}
+knitr::include_graphics("images/cartridgeInvestigatR_scoring.png")
+```

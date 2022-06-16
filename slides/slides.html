@@ -34,6 +34,10 @@ background-image: url("images/title-slide-bkgd.png")
 
 
 
+???
+Hi, everyone. Thank you for being here.
+I will discuss A Cartridge Case Comparison Pipeline
+
 ---
 
 # Acknowledgements
@@ -41,6 +45,9 @@ background-image: url("images/title-slide-bkgd.png")
 ## Funding statement
 
 This work was partially funded by the Center for Statistics and Applications in Forensic Evidence (CSAFE) through Cooperative Agreement 70NANB20H019 between NIST and Iowa State University, which includes activities carried out at Carnegie Mellon University, Duke University, University of California Irvine, University of Virginia, West Virginia University, University of Pennsylvania, Swarthmore College and University of Nebraska, Lincoln.
+
+???
+Here's the standard CSAFE acknowledgement
 
 ---
 
@@ -57,6 +64,11 @@ This work was partially funded by the Center for Statistics and Applications in 
   - Creative Component: *Open-source implementation of the Congruent Matching Cells method for cartridge case identification*
   
 - I hope to teach Statistics and Data Science at a post-secondary institution in the Denver area.
+
+???
+A bit about me:
+I am originally from the Twin Cities in Minnesota.
+I completed my undergraduate degree in Math and Math Education at Winona State University
 
 
 ---
@@ -1120,6 +1132,54 @@ The *common source* score-based likelihood ratio (SLR) is:
 `$$\delta_{CS}(\pmb{u}_x, \pmb{u}_y) = \frac{g(C(\pmb{u}_x, \pmb{u}_y) | H_p)}{g(C(\pmb{u}_x, \pmb{u}_y) | H_d)}$$`
 
 Commonly, `\(C\)` is a complex function (e.g., mapping two cartridge case scans to a match class probability) and `\(g\)` is estimated with data (e.g., KDE).
+
+---
+
+### cartridgeInvestigatR: Introduction
+
+&lt;img src="images/cartridgeInvestigatRIntro.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: Import
+
+&lt;img src="images/cartridgeInvestigatR_import.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: 3D Visualization
+
+&lt;img src="images/cartridgeInvestigatR_compareX3Ps.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: Preprocess
+
+&lt;img src="images/cartridgeInvestigatR_preprocess.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: Comparison Parameters
+
+&lt;img src="images/cartridgeInvestigatR_comparisonParameters.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: Comparison Results
+
+&lt;img src="images/cartridgeInvestigatR_comparisonResults.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: Custom Cell
+
+&lt;img src="images/cartridgeInvestigatR_customCell.png" width="2560" style="display: block; margin: auto;" /&gt;
+
+---
+
+### cartridgeInvestigatR: Scoring
+
+&lt;img src="images/cartridgeInvestigatR_scoring.png" width="2560" style="display: block; margin: auto;" /&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

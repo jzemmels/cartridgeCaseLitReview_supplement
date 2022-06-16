@@ -36,7 +36,10 @@ background-image: url("images/title-slide-bkgd.png")
 
 ???
 Hi, everyone. Thank you for being here.
-I will discuss A Cartridge Case Comparison Pipeline
+I will discuss A Cartridge Case Comparison Pipeline.
+
+If you have any questions or comments throughout the presentation, feel free to stop me.
+We do not need to wait until the end of the presentation.
 
 ---
 
@@ -69,7 +72,9 @@ Here's the standard CSAFE acknowledgement
 A bit about me:
 I am originally from the Twin Cities in Minnesota.
 I completed my undergraduate degree in Math and Math Education at Winona State University
-
+I started at Iowa State University in 2018 and received my Master's in 2020.
+My creative component was related to cartridge case analysis.
+After graduation, I would love to teach in the Denver area.
 
 ---
 
@@ -85,6 +90,13 @@ I completed my undergraduate degree in Math and Math Education at Winona State U
 
 - **Conclusions**
 
+???
+Outline:
+I will begin with some preliminary concepts related to how firearms and toolmarks identification is performed now.
+We will then get into the structure of the dissertation.
+Each chapter of the dissertation will be a distinct journal article.
+Then we'll have some final conclusions.
+
 ---
 
 class: center, middle
@@ -93,7 +105,13 @@ class: center, middle
 
 ## Firearms and Toolmarks Identification
 
-&lt;img src="images/cartridgeCasePipelineDiagram.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/cartridgeCasePipelineDiagram_examination.png" width="75%" style="display: block; margin: auto;" /&gt;
+
+???
+First: some background on firearms and toolmarks identification
+I will continually reference this diagram that you can see here.
+You can think of this diagram as representing an examination "pipeline" where a gun is fired, evidence such as a cartridge case is collected from this firing, then the forensic examiner performs their "examination," and finally arrives to some decision.
+I will provide more details in a few slides.
 
 ---
 
@@ -109,6 +127,11 @@ Contact with the back wall of the barrel leaves *breech face impressions*.
 
 Similarity of breech face impressions on two cartridge cases suggests they were fired from the same gun [Tho17].
 
+???
+When a gun is fired, at the same time as the bullet travels down the barrel, the rest of the metal casing, called a cartridge case, moves backwards and smacks against the back wall of the barrel, called the breech face of the barrel.
+Any markings on this breech face are impressed into the surface of the cartridge case, leaving the so-called breech face impressions.
+Firearm examiners compare these markings during an examination to determine whether two cartridge cases were fired from the same gun.
+
 ---
 
 ## Firearms and Toolmarks (F &amp; T) Examinations
@@ -118,6 +141,14 @@ A *comparison microscope* combines two compound microscopes into a single view [
 &lt;img src="images/comparisonMicroscope.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 Each stage is independently translated or rotated to find optimal matching position.
+
+???
+Historically, firearm and toolmarks examiners use these comparison microscopes to compare two pieces of evidence.
+Two pieces of evidence are placed on the two stages.
+The view of these two compound microscopes are combined into a single view at the top of the diagram.
+An example of two bullets under the comparison microscope view is seen on the right.
+A examiner analyzes the markings on the bullets to determine similarity. 
+An examiner will independently rotate and translate the stages to find the optimal matching position of the evidence.
 
 ---
 
@@ -139,6 +170,20 @@ Each stage is independently translated or rotated to find optimal matching posit
 
 - "Sufficient" agreement of class and individual characteristics suggests that the evidence originated from the same firearm [AFT92].
 
+???
+There are three types of "characteristics" that examiners look for on evidence.
+Class characteristics are features associated with the manufacturer of the firearm, such as size of ammunition, width and twist of the barrel, etc.
+Individual characteristics are imperfections in the firearm surface.
+Subclass characteristics are markings reproduced across a sub-group of firearms.
+For example, a single machine might be used in manufacturing multiple barrels meaning they might share some similar markings 
+
+For some reason, subclass characteristics are explained as appearing only when the manufacturing process goes awry (e.g., when a milling machine is faulty and leaves markings).
+It is unclear to me why subclass characteristics can't occur naturally during the manufacturing process.
+
+Sufficient agreement between the class and individual characteristics of two pieces of evidence suggests that the evidence originated from the same gun.
+
+I put "sufficient" in quotations because it is ill-defined in the F &amp; T community.
+
 ---
 
 ## AFTE Range of Conclusions
@@ -157,14 +202,20 @@ Each stage is independently translated or rotated to find optimal matching posit
 
 4. **Unsuitable**: Unsuitable for examination.
 
-
+???
+According to the Association of Firearm and Toolmarks Examiners, there are six possible conclusions that can be made.
+"Identification" means that the evidence matches and were fired from the same barrel.
+"Elimination" means that the evidence does not match and were fired from different barresl.
+"Inconclusive" means that there is insufficient information on the cartridge case surfaces to make an identification or elimination (although some labs cheat by breaking inconclusive into three parts).
+Finally, "unsuitable" means that the evidence isn't suitable for examination; for example, if there is only a fragment of a bullet recovered.
+ 
 ---
 
 ## F &amp; T Comparison Pipeline
 
 - F &amp; T examinations can be thought of as an evidence-to-decision "pipeline."
 
-&lt;img src="images/cartridgeCasePipelineDiagram_examination.png" width="1923" style="display: block; margin: auto;" /&gt;
+&lt;img src="images/cartridgeCasePipelineDiagram_examination.png" width="1904" style="display: block; margin: auto;" /&gt;
 
 - Some of these steps are performed implicitly by the examiner. For example:
 
@@ -173,6 +224,18 @@ Each stage is independently translated or rotated to find optimal matching posit
   - The examiner determines a similarity "score" to inform their decision.
 
 - This pipeline structure is also useful when considering automatic comparison algorithms.
+
+???
+These firearm and toolmark examinations can be thought of as an evidence to decision "pipeline" where evidence is collected from a crime scene or suspect's gun, they are examined by the F &amp; T examiner who ultimately makes a decision about whether the evidence originated from the same gun.
+For our purposes, it's useful to think of the examination as three distinct steps: preprocessing, comparison, and scoring.
+Preprocessing might involve adjusting the lighting conditions of the comparison stage.
+Comparing is some complex process by which the examiner tries to align the two pieces of evidence under the stage.
+The examiner then determines some sort of similarity "score," whether they realize it or not, that is used to inform their decision.
+
+One problem here is that the preprocess, comparison, and scoring stages are done implicitly by the examiner and is difficult to reproduce exactly.
+Further, there isn't a well-defined process that lays out how the examination should be done.
+
+We will come back to this idea of a comparison "pipeline" throughout this presentation as it will be useful to consider for our algorithms.
 
 ---
 
@@ -189,6 +252,12 @@ Each stage is independently translated or rotated to find optimal matching posit
 - Efforts should be made to "convert firearms analysis from a subjective method to an objective method ... [which] would involve developing and testing image-analysis algorithms for comparing the similarity of toolmarks..."&lt;sup&gt;[2]&lt;/sup&gt;
 
 .footnote[[1] National Research Council [Nat09], [2] President's Council of Advisors on Sci. &amp; Tech. [Pre16]]
+
+???
+So, why should we change Firearm and Toolmark Examinations?
+I have pulled some quotes from two documents that we all are very familiar with: the 2009 NAS report and the 2016 PCAST report.
+These two reports essentially say that the "scientific" foundation upon which F &amp; T examination is placed is shaky; mainly because there aren't well-defined procedures.
+Both of these reports recommend that automatic image-analysis algorithms should be developed to supplement the F &amp; T examination with an objective measure of similarity.
 
 ---
 
@@ -207,6 +276,16 @@ Each stage is independently translated or rotated to find optimal matching posit
 
 .footnote[Image source: Tai, et al. [TE18]]
 
+???
+In-general, algorithms can also be thought of as evidence-to-decision (or at least to score) pipelines.
+Many algorithms exist to compare F &amp; T evidence (and I've cited only a few here).
+While not necessarily the original authors' intentions, each of these algorithms can, to some degree, be broken down into a set of modular "pieces."
+For example, I took this diagram from a paper written by a previous CSAFE student, Xiao Hui Tai.
+She and Professor Eddy created an algorithm to compare images of cartridge cases that included various image processing techniques.
+Conceptually, this algorithm is explained a set of modular steps.
+We will come back to this idea of modularization later.
+We will focus primarily on the Congruent Matching Cells method originally introduced in 2013 by John Song of NIST.
+
 ---
 
 ## Data Format
@@ -223,6 +302,15 @@ Each stage is independently translated or rotated to find optimal matching posit
 
 - We consider cartridge case scans from the "Ames I" study [Bal+14].
 
+???
+Before we discuss algorithms in greater detail, I wanted to discuss the format of the data we will be using.
+The cartridge cases we used are from the "Ames I" study ran by Baldwin et al.
+These cartridge cases were scanned using the TopMatch-3D scanner from Cadre Forensics.
+You can see the scanner on the left.
+These scans consist of a a surface matrix, an example of which you can see on the right, and metadata about the scan.
+Together, these are stored in an x3p (XML 3D Surface Profile) file.
+I will commonly use "scan" and "x3p" interchangeably in this presentation.
+
 ---
 
 class: center, middle
@@ -233,6 +321,11 @@ class: center, middle
 
 &lt;img src="images/cartridgeCasePipelineDiagram_cmcR.png" width="75%" style="display: block; margin: auto;" /&gt;
 
+???
+Are there any questions about the introduction before we dive into the first paper?
+
+We will now discuss the first paper entitled "A Study in Reproducibility: The Congruent Matching Cells Algorithm and cmcR package"
+This paper has been submitted to the R Journal and we are currently working on addressing reviewers' comments.
 
 ---
 
@@ -247,6 +340,10 @@ class: center, middle
 - The open-source `cmcR` package provides a foundation upon which further improvements can be added.
 
 &lt;img src="images/cartridgeCasePipelineDiagram_cmcR.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+???
+Our goal for this paper was to implement the Congruent Matching Cells algorithm, using these three papers as our primary reference.
+In particular, we have structured 
 
 ---
 
@@ -926,7 +1023,7 @@ class: center, middle
   
   - Useful to practitioners to understand and explain the pipeline.
   
-- Paper \#3 to JDSSV, Submit by 4/1/2022
+- Paper \#3 to JDSSV, Submit by 4/1/2023
 
   - Improvements to the pipeline.
   
@@ -934,7 +1031,7 @@ class: center, middle
   
   - Will be the largest (published) study of a C.C. comparison algorithm.
 
-- Dissertation defense by 4/21/22 (last day for Spring 2023 semester)
+- Dissertation defense by 4/21/23 (last day for Spring 2023 semester)
 ---
 class: primary-blue
 # References

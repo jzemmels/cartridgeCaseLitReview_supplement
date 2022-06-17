@@ -733,7 +733,7 @@ knitr::include_graphics("images/cartridgeCasePipelineDiagram_cmcR.png")
 
 class: center, middle
 
-## Diagnostic Tools for Cartridge Case Comparion Algorithms
+## Diagnostic Tools for Cartridge Case Comparison Algorithms
 
 ### To be submitted to *The Journal of Computational and Graphical Statistics*
 

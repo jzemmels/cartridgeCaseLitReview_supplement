@@ -212,9 +212,7 @@ We will come back to this idea of a comparison "pipeline" throughout this presen
 
 - F & T examinations can be thought of as an evidence-to-decision "pipeline."
 
-```{r}
-knitr::include_graphics("images/cartridgeCasePipelineDiagram_examination.png")
-```
+![](images/cartridgeCasePipelineDiagram_examination.png){fig-align="center" width=1000}
 
 - Some of these steps are performed implicitly by the examiner. For example:
 
@@ -353,7 +351,7 @@ This brings us to the inconclusive rate, which is the number of inconclusives, 7
 
 ## Part I: Cartridge Case Comparison Algorithms
 
-![](images/cartridgeCasePipelineDiagram_cmcR.png){fig-align="center" width=700}
+![](images/cartridgeCasePipelineDiagram_cmcR.png){fig-align="center" width=1000}
 
 ::: {.notes}
 
@@ -976,7 +974,7 @@ Tidy principles of design [@tidyverse]:
 
 ## Part II: Visual Diagnostics
 
-![](images/cartridgeCasePipelineDiagram_diagnostics.png){fig-align="center" width=700}
+![](images/cartridgeCasePipelineDiagram_diagnostics.png){fig-align="center" width=1000}
 
 ::: {.notes}
 
@@ -1847,7 +1845,7 @@ Together, the statistics and the visual diagnostics give us a more holistic idea
 
 ## Part III: Automatic Cartridge Evidence Scoring (ACES) Algorithm
 
-![](images/cartridgeCasePipelineDiagram_newModules.png){fig-align="center" width=700}
+![](images/cartridgeCasePipelineDiagram_newModules.png){fig-align="center" width=1000}
 
 ::: {.notes}
 

@@ -433,6 +433,14 @@ invisible(knitr::plot_crop("images/compStep1Plt.png"))
 knitr::include_graphics("images/compStep1Plt.png")
 ```
 
+???
+We chop one of the scans into a grid of "cells"
+
+Our goal will be to find where each aligns best in the other scan.
+This includes finding a rotation and a spatial alignment, a translation, for each cell.
+The way we find the best alignment is using the cross-correlation function, which measures the similarity between a cell and the other scan.
+
+
 ---
 
 ## The CMC Pipeline: Compare
@@ -461,6 +469,12 @@ knitr::include_graphics("images/compStep2Plt.png")
 
 
 .footnote[.tiny[[1] See appendix for more details on CCF]]
+
+???
+This is what is shown on the bottom of this slide.
+Each cell has found a location that maximizes the cross-correlation function with the other scan.
+However, we're only looking at the locations for a single rotation of the target scan.
+We consider a grid of rotations, say -30 to 30 degrees, and try to find the optimal alignment across all of these rotations.
 
 ---
 
@@ -515,6 +529,17 @@ For each rotation, each cell "votes" for where it aligns best in the target scan
 For truly matching cartridge cases, the cells should "agree" on a translation at the true rotation.
 
 In this example, $(\theta, \Delta x,\Delta y) \approx (3,-10,10)$ appears to be the "consensus."
+
+???
+This is visualized on this slide.
+Each column represents a single rotation and each point in this scatterplot represents where a single cell aligns in the other scan.
+You'll notice that when we rotate by -3 degrees, the scatterplot seems to be farely random.
+However, as we get closer to 3 degrees, you'll notice that some of the points contract towards a particular translation value.
+The points them spread out as we move towards 9 degrees.
+
+We can think about each cell "voting" for where it aligns best in the target scan for each rotation.
+If a pair of scans are truly matching, then the cells should "agree" on a particular on a particular translation at the true rotation.
+In this case, the cells seem to be agreeing on a translation of 10 units left and 10 units up at a rotation of 3 degrees.
 
 ---
 

@@ -382,7 +382,7 @@ Keep in mind that we are specifically interested in circular region around this 
 
 - **x3p** file contains surface measurements at lateral resolution of 1.8 micrometers ("microns") per pixel
 
-```{r x3pImage,fig.align='center',fig.width=5,eval=TRUE}
+```{r x3pImage,fig.align='center',fig.width=5,eval=TRUE,fig.cap="."}
 # knitr::knit_hooks$set(webgl = hook_webgl)
 
 K013sA1 <- x3p_read("data/K013sA1.x3p")

@@ -74,9 +74,9 @@ For  this project, we're interested in determining whether two cartridge cases w
 A cartridge case is a metal casing containing the primer, powder, and a projectile.
 In the animation, you can see an example of a cartridge case that is ejected from the barrel after firing
 
-When a gun is fired and the bullet travels down the barrel, the cartridge case stays in the barrel and is sent backwards as a reaction to the bullet moving forward.
+When a gun is fired and the bullet travels down the barrel, the cartridge case stays in the barrel and is push backwards as a reaction to the bullet moving forward.
 
-It then slams against the back wall of the barrel, also known as the "breech face," with great force.
+It pushes against the back wall of the barrel, also known as the "breech face," with great force.
 
 Markings on the breech face are impressed into surface of the cartridge case, and this leaves so-called "breech face impressions."
 
@@ -130,7 +130,7 @@ The final result is the examiner's conclusion on whether the cartridge cases ori
 
 - Assess the "agreement" of impressions on the two cartridge cases [@AFTE1992]
 
-![](images/cartridgeCaseZoomIn.png){fig-align="center" width=1000}
+![](images/cartridgeCaseZoomIn.png){fig-align="center" width=300}
 
 ### Firearm and Tool Mark Examinations {.smaller .scrollable}
 
@@ -193,17 +193,18 @@ Finally, "unsuitable" means that the evidence isn't suitable for examination; fo
 
 4. **Unsuitable**: Unsuitable for examination.
 
-## F & T Comparison Pipeline {.smaller .scrollable}
+### F & T Comparison Pipeline {.smaller .scrollable}
 
 ::: {.notes}
 
-These firearm and toolmark examinations can be thought of as an evidence to decision "pipeline" where evidence is collected from a crime scene or suspect's gun, they are examined by the F & T examiner who ultimately makes a decision about whether the evidence originated from the same gun.
-For our purposes, it's useful to think of the examination as three distinct steps: pre-processing, comparison, and scoring.
-pre-processing might involve adjusting the lighting conditions of the comparison stage.
+It will be useful for us to think of these firearm and toolmark examinations as an evidence to decision "pipeline" where evidence is collected from a crime scene or suspect's gun, it's examined by the F & T examiner who ultimately makes a decision about whether the evidence originated from the same gun.
+
+For our purposes, it's useful to think of the examination as three distinct steps: pre-processing, comparing, and scoring.
+pre-processing might involve adjusting the lighting conditions of the stage on which the cartridge cases are placed.
 Comparing is some complex process by which the examiner tries to align the two pieces of evidence under the stage.
 The examiner then determines some sort of similarity "score," whether they realize it or not, that is used to inform their decision.
 
-One problem here is that the pre-process, comparison, and scoring stages are done implicitly by the examiner and is difficult to reproduce exactly.
+One problem here is that the pre-processing, comparing, and scoring stages are done implicitly by the examiner and is difficult to reproduce exactly.
 Further, there isn't a well-defined process that lays out how the examination should be done.
 
 We will come back to this idea of a comparison "pipeline" throughout this presentation as it will be useful to consider for our algorithms.
@@ -216,7 +217,7 @@ We will come back to this idea of a comparison "pipeline" throughout this presen
 
 - Some of these steps are performed implicitly by the examiner. For example:
 
-  - "pre-processing" includes adjusting lighting on the comparison stage.
+  - "Pre-processing" includes adjusting lighting on the comparison stage.
 
   - The examiner determines a similarity "score" to inform their decision.
 
@@ -226,11 +227,9 @@ We will come back to this idea of a comparison "pipeline" throughout this presen
 
 ::: {.notes}
 
-Now why are we talking about comparison algorithms today?
+As I alluded to earlier, the scientific validity of many forensic disciplines has been called into question in recent years.
 
-Well, in recent years the scientific validity of many forensic disciplines has been called into question.
-
-For example in 2009, a report from the National Research Council stated that the decision of a toolmark examiner, which is the examiner who would be looking at these comparisons, remains a subjective decision based on unartiluated standards and no statistical foundation for estimation of error rates
+For example in 2009, a report from the National Research Council stated that the decision of a toolmark examiner, which is the examiner who would be looking at these comparisons, remains a subjective decision based on unarticulated standards and no statistical foundation for estimation of error rates
 
 **NEXT**
 
@@ -238,8 +237,7 @@ Seven years later, the President's Council of Advisors on Science and Technology
 
 **NEXT**
 
-Today, we will discuss an image-analysis algorithm called the Automatic Cartridge Evidence Scoring or "ACES" algorithm that compares cartridge case evidence.
-In particular, we'll introduce a series of diagnostic tools that are useful in understanding how these algorithms work "under the hood," so to speak
+We will discuss an image-analysis algorithm called the Automatic Cartridge Evidence Scoring or "ACES" algorithm that compares cartridge case evidence.
 
 :::
 
@@ -263,9 +261,7 @@ We introduce the **Automatic Cartridge Evidence Scoring** (ACES) algorithm to co
 
 ::: {.notes}
 
-Before we dive into algorithms, I wanted to first discuss the data that we will be using throughout this presentation.
-
-We use cartridge cases collected as part of a 2014 study, commonly called the "Ames I" study because it included researchers from Iowa State University.
+Before we dive into algorithms, I wanted to first discuss a well-known study that looked into the error rates of firearm and tool mark examiners that was performed by researchers here at Iowa State in 2014.
 
 For the study, the researchers fired cartridge cases from 25 Ruger SR9 pistols
 
@@ -312,23 +308,21 @@ This brings us to the inconclusive rate, which is the number of inconclusives, 7
 
 :::
 
-<!-- ::: {.scrollable} -->
-
 - @baldwin collected cartridge cases from 25 Ruger SR9 pistols
 
-<!-- ::: {.fade-in} -->
+. . .
 
 - Separated cartridge cases into quartets: 3 *known-match* + 1 *unknown source*
 
-- *Match* if fired from the same firearm,  *Non-match* if fired from different firearms
+  - *Match* if fired from the same firearm,  *Non-match* if fired from different firearms
 
-<!-- ::: {.fade-in} -->
+. . .
 
 - 218 examiners tasked with determining whether the unknown cartridge case originated from the same pistol as the known-match cartridge cases
 
   - *True Positive* if a match is correctly classified, *True Negative* if non-match is correctly classified
   
-<!-- ::: {.fade-in} -->
+. . .
 
 | | Match Conclusion | Non-match Conclusion| Inconclusive Conclusion| Total |
 | -------------: | -------------: | -------------: | -------------: | -------------: |
@@ -336,6 +330,8 @@ This brings us to the inconclusive rate, which is the number of inconclusives, 7
 | **Ground-truth Non-match** | 22 | 1,421 | 735 + 2* | 2,180 |
 
 *Two non-match comparisons were deemed "unsuitable for comparison"
+
+. . .
 
 </br>
 
@@ -382,7 +378,7 @@ Keep in mind that we are specifically interested in circular region around this 
 
 - **x3p** file contains surface measurements at lateral resolution of 1.8 micrometers ("microns") per pixel
 
-```{r x3pImage,fig.align='center',fig.width=5,eval=TRUE,fig.cap="."}
+```{r x3pImage,fig.align='center',fig.width=5,eval=TRUE}
 # knitr::knit_hooks$set(webgl = hook_webgl)
 
 K013sA1 <- x3p_read("data/K013sA1.x3p")
@@ -436,7 +432,7 @@ Obtain an objective measure of similarity between two cartridge cases
 
 . . .
 
-- **Step 3**: Combine numerical features into a single similarity *score* (e.g., similarity score between 0 and 1)
+- **Step 3**: Combine numerical features into a single similarity *score*, $s$ (e.g., $s \in [0,1]$, $s \in \mathbb{Z}^+$)
 
 . . .
 
@@ -444,70 +440,74 @@ Examiner takes similarity score into account during an examination
 
 Challenging to know how/when these steps work correctly
 
-## Step 1: Pre-process {.smaller}
+## Step 1: Pre-process {.smaller .scrollable}
 
 Isolate region in scan that consistently contains breech face impressions
 
-```{r,fig.width=8,fig.align='center',eval=TRUE,include=FALSE,eval = FALSE}
-K013sA1 <- x3p_read("data/K013sA1.x3p") %>%
-  x3p_rotate(angle = 180) %>%
-  x3p_flip_y() #%>%
-  # sample_x3p(m = 4)
+![](images/preProcess_pipeline_example.png){fig-align="center" width=700}
 
-# K013sA1$mask <- NULL
+***How do we know when a scan is adequately pre-processed?***
 
-K013sA1_processed <- x3p_read("data/K013sA1_processed.x3p") %>%
-  x3p_rotate(angle = 180) %>%
-  x3p_flip_y() %>%
-  x3p_rotate(angle = 90)# %>%
-  # sample_x3p(m = 4)
-K013sA1_processed$surface.matrix <- K013sA1_processed$surface.matrix*1e6
-K013sA1_processed$header.info$incrementY  <- K013sA1_processed$header.info$incrementY*1e6
-K013sA1_processed$header.info$incrementX  <- K013sA1_processed$header.info$incrementX*1e6
-
-K013sA1$surface.matrix <- K013sA1$surface.matrix %>%
-  imager::as.cimg() %>%
-  imager::pad(nPix = 0,axes = "x",val = 100,pos = -1) %>%
-  imager::pad(nPix = 1,axes = "y",val = 100,pos = -1) %>%
-  as.matrix()
-
-K013sA1_processed$surface.matrix <- K013sA1_processed$surface.matrix %>%
-  imager::as.cimg() %>%
-  imager::pad(nPix = nrow(K013sA1$surface.matrix) - nrow(K013sA1_processed$surface.matrix),
-              axes = "x",val = 100) %>%
-  imager::pad(nPix = ncol(K013sA1$surface.matrix) - ncol(K013sA1_processed$surface.matrix),
-              axes = "y",val = 100) %>%
-  as.matrix()
-
-K013sA1_processed$surface.matrix[K013sA1_processed$surface.matrix == 100] <- NA
-
-K013sA1_combined <- K013sA1
-
-K013sA1_combined$surface.matrix <- 
-  rbind(K013sA1$surface.matrix,
-        matrix(NA,
-               ncol = ncol(K013sA1$surface.matrix),
-               nrow = 10),
-        K013sA1_processed$surface.matrix)
-
-K013sA1_combined$mask <- NULL
-K013sA1_combined$header.info$sizeY <- ncol(K013sA1_combined$surface.matrix)
-K013sA1_combined$header.info$sizeX <- nrow(K013sA1_combined$surface.matrix)
-x3ptools::x3p_write(K013sA1_combined,"data/K013sA1_combined.x3p")
-```
-
-```{r,fig.width=8,fig.align='center',eval=TRUE,include=TRUE,echo=FALSE}
-K013sA1_combined <- x3p_read("data/K013sA1_combined.x3p") %>%
-  x3p_sample(m=4)
-
-x3p_image(K013sA1_combined,zoom=1.3)
-
-# x3p_snapshot(file = "figures/preProcess_x3pImage.png")
-# knitr::plot_crop("figures/preProcess_x3pImage.png")
-# rgl::close3d()
-
-rglwidget()
-```
+<!-- # ```{r,fig.width=8,fig.align='center',eval=TRUE,include=FALSE,eval = FALSE} -->
+<!-- # K013sA1 <- x3p_read("data/K013sA1.x3p") %>% -->
+<!-- #   x3p_rotate(angle = 180) %>% -->
+<!-- #   x3p_flip_y() #%>% -->
+<!-- #   # sample_x3p(m = 4) -->
+<!-- #  -->
+<!-- # # K013sA1$mask <- NULL -->
+<!-- #  -->
+<!-- # K013sA1_processed <- x3p_read("data/K013sA1_processed.x3p") %>% -->
+<!-- #   x3p_rotate(angle = 180) %>% -->
+<!-- #   x3p_flip_y() %>% -->
+<!-- #   x3p_rotate(angle = 90)# %>% -->
+<!-- #   # sample_x3p(m = 4) -->
+<!-- # K013sA1_processed$surface.matrix <- K013sA1_processed$surface.matrix*1e6 -->
+<!-- # K013sA1_processed$header.info$incrementY  <- K013sA1_processed$header.info$incrementY*1e6 -->
+<!-- # K013sA1_processed$header.info$incrementX  <- K013sA1_processed$header.info$incrementX*1e6 -->
+<!-- #  -->
+<!-- # K013sA1$surface.matrix <- K013sA1$surface.matrix %>% -->
+<!-- #   imager::as.cimg() %>% -->
+<!-- #   imager::pad(nPix = 0,axes = "x",val = 100,pos = -1) %>% -->
+<!-- #   imager::pad(nPix = 1,axes = "y",val = 100,pos = -1) %>% -->
+<!-- #   as.matrix() -->
+<!-- #  -->
+<!-- # K013sA1_processed$surface.matrix <- K013sA1_processed$surface.matrix %>% -->
+<!-- #   imager::as.cimg() %>% -->
+<!-- #   imager::pad(nPix = nrow(K013sA1$surface.matrix) - nrow(K013sA1_processed$surface.matrix), -->
+<!-- #               axes = "x",val = 100) %>% -->
+<!-- #   imager::pad(nPix = ncol(K013sA1$surface.matrix) - ncol(K013sA1_processed$surface.matrix), -->
+<!-- #               axes = "y",val = 100) %>% -->
+<!-- #   as.matrix() -->
+<!-- #  -->
+<!-- # K013sA1_processed$surface.matrix[K013sA1_processed$surface.matrix == 100] <- NA -->
+<!-- #  -->
+<!-- # K013sA1_combined <- K013sA1 -->
+<!-- #  -->
+<!-- # K013sA1_combined$surface.matrix <-  -->
+<!-- #   rbind(K013sA1$surface.matrix, -->
+<!-- #         matrix(NA, -->
+<!-- #                ncol = ncol(K013sA1$surface.matrix), -->
+<!-- #                nrow = 10), -->
+<!-- #         K013sA1_processed$surface.matrix) -->
+<!-- #  -->
+<!-- # K013sA1_combined$mask <- NULL -->
+<!-- # K013sA1_combined$header.info$sizeY <- ncol(K013sA1_combined$surface.matrix) -->
+<!-- # K013sA1_combined$header.info$sizeX <- nrow(K013sA1_combined$surface.matrix) -->
+<!-- # x3ptools::x3p_write(K013sA1_combined,"data/K013sA1_combined.x3p") -->
+<!-- # ``` -->
+<!-- #  -->
+<!-- # ```{r,fig.width=8,fig.align='center',eval=TRUE,include=TRUE,echo=FALSE} -->
+<!-- # K013sA1_combined <- x3p_read("data/K013sA1_combined.x3p") %>% -->
+<!-- #   x3p_sample(m=4) -->
+<!-- #  -->
+<!-- # x3p_image(K013sA1_combined,zoom=1.3) -->
+<!-- #  -->
+<!-- # # x3p_snapshot(file = "figures/preProcess_x3pImage.png") -->
+<!-- # # knitr::plot_crop("figures/preProcess_x3pImage.png") -->
+<!-- # # rgl::close3d() -->
+<!-- #  -->
+<!-- # rglwidget() -->
+<!-- # ``` -->
 
 
 <!--  ```{r,out.width="100%",include=TRUE,eval=TRUE} -->
@@ -543,10 +543,6 @@ rglwidget()
 <!-- knitr::include_graphics("figures/preProcessExample.png") -->
 <!-- ``` -->
 
-. . .
-
-***How do we know when a scan is adequately pre-processed?***
-
 ::: {.notes}
 
 The purpose of the pre-process step is to isolate the region of the scan that consistently contains breech face impressions.
@@ -564,9 +560,9 @@ I'll talk about we addressed this question in a few slides.
 
 ### Pre-processing Details {.smaller .scrollable}
 
-Subsequent Pre-processing Effects:
+<!-- Subsequent Pre-processing Effects: -->
 
-![](images/preProcessDiagram.png){fig-align="center" width=700}
+<!-- ![](images/preProcessDiagram.png){fig-align="center" width=700} -->
 
 Gaussian Filter Examples:
 
@@ -584,9 +580,15 @@ Erosion:
 
 Experimentation is needed to identify optimal parameters.
 
-## Step 2: Compare Full Scans {.smaller}
+## Step 2: Compare Full Scans {.smaller .scrollable}
 
 - *Registration*: Determine rotation and translation to align two scans
+
+  - *Cross-correlation function* (CCF) measures similarity between scans
+
+![](images/registrationAlgorithm.png){fig-align="center" width=700}
+
+- **Summary:** For each rotation, determine translation that maximizes the CCF. Estimated registration is that which maximizes the CCF across *all* rotations/translations.
 
 ```{r fullScanComparison,eval=FALSE}
 K013sA1_processed <- x3p_read("data/K013sA1_processed.x3p") %>%
@@ -638,12 +640,6 @@ rgl::close3d()
 <!-- knitr::include_graphics("images/fullScanRegistrationDiagram.png") -->
 <!-- ``` -->
 
-. . .
-
-- *Cross-correlation function* (CCF) measures similarity between scans
-
-  - Choose the rotation/translation that maximizes the CCF
-
 
 ::: {.notes}
 
@@ -667,10 +663,6 @@ This means that even for matching scans, the cross-correlation may not be very l
 
 :::
 
-### Image Registration Procedure
-
-![](images/registrationAlgorithm.png){fig-align="center" width=700}
-
 ### Cross-Correlation Computation {.smaller .scrollable}
 
 ![](images/ccfExample.png){fig-align="center" width=700}
@@ -685,54 +677,70 @@ Index $i,j$ maps to $i^*, j^*$ by:
 
 $$\begin{pmatrix} j^* \\ i^* \end{pmatrix} = \begin{pmatrix} n^* \\ m^* \end{pmatrix} + \begin{pmatrix} \cos(\theta^*) & -\sin(\theta^*) \\ \sin(\theta^*) & \cos(\theta^*) \end{pmatrix} \begin{pmatrix} j \\ i \end{pmatrix}.$$
 
-## Step 2: Compare Cells {.smaller}
+## Step 2: Compare Cells {.smaller .scrollable}
 
 - Split one scan into a grid of cells that are each registered to the other scan [@song_proposed_2013]
 
-- For a matching pair, we assume that cells will agree on the same rotation & translation
+![](images/cellBasedComparisonAlgorithm.png){fig-align="center" width=700}
 
-```{r,eval=FALSE}
-if(!file.exists("data/cellBased_knownMatch.rds")){
-  
-  K013sA1_processed <- x3p_read("data/K013sA1_processed.x3p")
-  K013sA2_processed <- x3p_read("data/K013sA2_processed.x3p")
-  
-  cellBased_knownMatch <- bind_rows(scored::comparison_cellBased(reference = K013sA1_processed,
-                                                     target = K013sA2_processed,
-                                                     thetas = 3,
-                                                     numCells = c(8,8),
-                                                     direction = "one",
-                                                     returnX3Ps = TRUE) %>%
-                          mutate(direction = "reference_vs_target"),
-                        scored::comparison_cellBased(reference = K013sA2_processed,
-                                                     target = K013sA1_processed,
-                                                     thetas = -3,
-                                                     numCells = c(8,8),
-                                                     direction = "one",
-                                                     returnX3Ps = TRUE) %>%
-                          mutate(direction = "target_vs_reference"))
-  
-  saveRDS(cellBased_knownMatch,"data/cellBased_knownMatch.rds")
-}
+**Summary:** For each rotation, each cell "votes" for where it aligns best in the other scan. For a matching pair, we assume that cells will agree on the same translation at the true aligning rotation.
 
-cellBased_knownMatch %>%
-  filter(direction == "reference_vs_target") %>%
-  select(cellHeightValues,alignedTargetCell,cellIndex) %>%
-  pmap(~ {
-    
-    x3pPlot(..1,..2,x3pNames = c(..3,"."))
-    
-  })
-```
+<!-- ```{r,eval=FALSE} -->
+<!-- if(!file.exists("data/cellBased_knownMatch.rds")){ -->
 
-```{r,fig.align='center',out.width="75%"}
-knitr::include_graphics("images/cellBasedRegistrationDiagram_x3pImage.png")
-```
+<!--   K013sA1_processed <- x3p_read("data/K013sA1_processed.x3p") -->
+<!--   K013sA2_processed <- x3p_read("data/K013sA2_processed.x3p") -->
+
+<!--   cellBased_knownMatch <- bind_rows(scored::comparison_cellBased(reference = K013sA1_processed, -->
+<!--                                                      target = K013sA2_processed, -->
+<!--                                                      thetas = 3, -->
+<!--                                                      numCells = c(8,8), -->
+<!--                                                      direction = "one", -->
+<!--                                                      returnX3Ps = TRUE) %>% -->
+<!--                           mutate(direction = "reference_vs_target"), -->
+<!--                         scored::comparison_cellBased(reference = K013sA2_processed, -->
+<!--                                                      target = K013sA1_processed, -->
+<!--                                                      thetas = -3, -->
+<!--                                                      numCells = c(8,8), -->
+<!--                                                      direction = "one", -->
+<!--                                                      returnX3Ps = TRUE) %>% -->
+<!--                           mutate(direction = "target_vs_reference")) -->
+
+<!--   saveRDS(cellBased_knownMatch,"data/cellBased_knownMatch.rds") -->
+<!-- } -->
+
+<!-- cellBased_knownMatch %>% -->
+<!--   filter(direction == "reference_vs_target") %>% -->
+<!--   select(cellHeightValues,alignedTargetCell,cellIndex) %>% -->
+<!--   pmap(~ { -->
+
+<!--     x3pPlot(..1,..2,x3pNames = c(..3,".")) -->
+
+<!--   }) -->
+<!-- ``` -->
+
+<!-- ```{r,fig.align='center',out.width="75%"} -->
+<!-- knitr::include_graphics("images/cellBasedRegistrationDiagram_x3pImage.png") -->
+<!-- ``` -->
 
 
-```{r,fig.align='center',out.width="75%",eval=FALSE}
-knitr::include_graphics("images/cellBasedRegistrationDiagram.png")
-```
+<!-- ```{r,fig.align='center',out.width="75%",eval=FALSE} -->
+<!-- knitr::include_graphics("images/cellBasedRegistrationDiagram.png") -->
+<!-- ``` -->
+
+<!-- . . . -->
+
+::::: columns
+::: column
+![](images/cellBasedRegistrationDiagram_x3pImage.png){fig-align="center" width=500}
+:::
+
+::: column
+![](images/compStep3Animation_scatterplot.gif){fig-align="center" width=350}
+:::
+:::::
+
+In this example, $(\theta^*, m^*, n^*) \approx (3^\circ, 10, -10)$ appears to be the "consensus."
 
 . . .
 
@@ -756,19 +764,6 @@ In a few slides, I will discuss tools we developed to address this question.
 
 :::
 
-### Registration Details {.smaller .scrollable}
-
-![](images/compStep3Example.png){fig-align="center" width=700}
-
-For each rotation, each cell "votes" for where it aligns best in the other scan.
-
-For truly matching cartridge cases, the cells should "agree" on a translation at the true rotation.
-
-In this example, $(\theta^*, m^*, n^*) = (3^\circ, 10, -10)$ appears to be the "consensus."
-
-### Cell-based Comparison Procedure {.smaller .scrollable}
-
-![](images/cellBasedComparisonAlgorithm.png){fig-align="center" width=700}
 
 ### Proposed Comparison Procedures {.smaller .scrollable}
 
@@ -783,6 +778,8 @@ In this example, $(\theta^*, m^*, n^*) = (3^\circ, 10, -10)$ appears to be the "
   - Maximized CCF (0.27 in example below) [@vorburger_surface_2007; @tai_fully_2018]
 
   - Congruent Matching Cells (11 CMCs in example below) [@song_proposed_2013]
+  
+    - Determine number of cells that "agree" on a registration
   
 ```{r}
 if(!file.exists("figures/cmcPlot_knownMatch.png")){
@@ -849,13 +846,11 @@ if(!file.exists("figures/cmcPlot_knownMatch.png")){
 ```
 
 
-```{r,include=TRUE,out.width=500}
-knitr::include_graphics("figures/cmcPlot_knownMatch.png")
-```
+![](figures/cmcPlot_knownMatch.png){fig-align="center" width=700}
 
 . . .
 
-- **Our approach**: similarity score between 0 and 1 using a statistical model
+- **Our approach**: statistical model predicts similarity score for a cartridge case pair
 
 ***What factors influence the final similarity score?***
 
@@ -921,27 +916,60 @@ Otherwise, it is a *non-CMC*.
 
 Cells are classified as CMCs if the estimated translations and rotation are close to the consensus **and** the associated CCF is large.
 
-## Implementation: `cmcR` {.smaller .scrollable}
+## Implementation - Issues {.smaller .scrollable}
 
-![](images/cartridgeCasePipelineDiagram_cmcR.png){fig-align="center" width=700}
+<!-- ![](images/cartridgeCasePipelineDiagram_cmcR.png){fig-align="center" width=700} -->
 
-- Break down each step of the algorithm into simple "modules"
+- Developing such comparison pipelines requires a lot of experimentation with parameter choice
 
-- Arrange modules in-sequence with the pipe (`%>%`) operator
+  - What is the "best" set/ordering of pre-processing steps?
+  
+  - What parameters should we use when comparing or scoring?
 
-```{r,echo=TRUE,eval=FALSE}
+  - Specific steps in the pipeline can easily become obfuscated and/or difficult to reproduce with poorly-formatted and/or closed-source code
+
+## Implementation - Resolution {.smaller .scrollable}
+
+- Utilize the "tidy" development philosophy
+
+  - Break down each step of the algorithm into simple "modules"
+
+  - Arrange modules in-sequence with the pipe (`%>%`) operator
+
+  - Modularization enables experimentation and promotes understanding
+
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+#| code-line-numbers: "3,4,8,9"
 x3p1 <- x3p_partiallyProcessed %>%
+  preProcess_crop() %>%
   preProcess_removeTrend() %>%
   preProcess_gaussFilter()
 
 x3p2 <- x3p_partiallyProcessed %>%
+  preProcess_crop() %>%
   preProcess_gaussFilter() %>%
   preProcess_removeTrend()
 ```
- 
-![](images/preProcessPipelineSwap.png){fig-align="center" width=700}
 
-### "Tidy" Application Programming Interfaces {.smaller}
+![](images/preProcessPipelineSwap.png){fig-align="center" height=200}
+
+. . .
+
+Also, reuse existing data structures/packages to ease knowledge transfer
+
+```{r, eval=FALSE,echo=TRUE}
+library(dplyr)
+x3p1 %>%
+  comparison_cellDivision(numCells = c(4,4)) %>%
+  mutate(targetRegion = comparison_getTargetRegions(cellHeightValues,target = x3p2,theta = -3)) %>%
+  filter(comparison_calcPropMissing(cellHeightValues) < .99 & 
+           comparison_calcPropMissing(targetRegion) < .99) %>% ...
+```
+
+### Tidy Application Programming Interfaces {.smaller}
 
 Tidy principles of design [@tidyverse]:
 
@@ -954,23 +982,36 @@ Tidy principles of design [@tidyverse]:
 4. **Design for humans.** Eases mental load by using consistent, descriptive naming schemes.
 
 
+
 ## Part I Summary {.smaller .scrollable}
 
-- Open-source code and data make algorithms accessible in terms of literal *acquisition*
-
-  - Should be minimum standard in forensics
-
-  - Encourages more transparent, equitable justice system
-
-- A "tidy" architecture makes algorithms *conceptually* accessible
+- A "tidy" architecture makes algorithms conceptually accessible
 
   - Modularization enables experimentation and improvement
 
   - Modules are easily reordered or replaced
 
+  - Easier for others to work with and reproduce findings
+
+<!-- - Open-source code and data make algorithms accessible in terms of literal acquisition -->
+
+<!--   - Should be minimum standard in forensics -->
+
+<!--   - Encourages more transparent, equitable justice system -->
+
+- `cmcR` package provides a tidy implementation of the cartridge case comparison pipeline
+
+  - <https://csafe-isu.github.io/cmcR/>
+
 . . .
 
-**Lingering question:** *why* does the algorithm work the way it does?
+**Lingering questions**
+
+*How do we know when a scan is adequately pre-processed?*
+
+*Why does the algorithm "choose" a particular registration?*
+
+*What factors influence the final similarity score?*
 
 ## Part II: Visual Diagnostics
 
@@ -1799,25 +1840,53 @@ Together, the statistics and the visual diagnostics give us a more holistic idea
 
 :::
 
-## Implementation {.smaller}
-
-- `impressions`: tidy implementation of visual diagnostic tools (`x3p_filter`, etc.)
-
-  - Future work: create a `geom_x3p` to work better with `ggplot2` functionality [@ggplot2]
-
-- `cartridgeInvestigatR`: interactive web application to apply and explore comparison algorithms
-
-  - <https://csafe.shinyapps.io/cartridgeInvestigatR/>
-
-  - Allows all audiences the ability to interact with and understand comparison algorithms
-
-## Part II Summary
+## Part II Summary {.smaller}
 
 - Diagnostics aid in understanding how an algorithm works and how to improve the algorithm
 
+  - E.g., the new modules introduced in the next section were motivated using the visual diagnostics
+
 - Can also be used to identify specific instances in which the algorithm "goes awry"
 
+  - E.g., remove non-breech face impression observations during pre-processing
+
 - `cartrigdeInvestigatR` provides user-friendly interface to interact with all steps of the comparison pipeline
+
+  - <https://csafe.shinyapps.io/cartridgeInvestigatR/>
+
+### Implementation {.smaller}
+
+- `impressions`: implementation of visual diagnostic tools (`x3p_filter`, `x3p_comparisonPlot` etc.)
+
+  <!-- - Future work: create a `geom_x3p` to work better with `ggplot2` functionality [@ggplot2] -->
+
+```{r,include=FALSE}
+library(impressions)
+K013sA1 <- x3p_read("data/K013sA1_processed.x3p")
+K013sA1$surface.matrix <- K013sA1$surface.matrix*1e6
+
+plt <- x3pPlot(K013sA1, 
+               x3p_filter(K013sA1, cond = function(x) abs(x) <= 1, replacement = NA),
+               x3p_filter(K013sA1,cond=function(x,thresh) abs(x) > thresh,replacement=NA,thresh=x3p_sd(K013sA1)),
+               x3pNames = c("K013sA1","K013sA1, at most 1 micron","K013sA1, more than 1 s.d. of height values"))
+ggsave(filename = "figures/K013sA1-x3pPlot-example.png",width = 10,height = 7)
+knitr::plot_crop("figures/K013sA1-x3pPlot-example.png")
+```
+
+```{r,echo=TRUE,eval=FALSE}
+x3pPlot(K013sA1, 
+        x3p_filter(K013sA1, cond = function(x) abs(x) <= 1, replacement = NA),
+        x3p_filter(K013sA1,cond=function(x,thresh) abs(x) > thresh,replacement=NA, thresh = x3p_sd(K013sA1)),
+        x3pNames = c("K013sA1","K013sA1, at most 1 micron","K013sA1, more than 1 s.d. of height values"))
+```
+
+![](figures/K013sA1-x3pPlot-example.png){fig-align="center" width=700}
+
+- `cartridgeInvestigatR`: interactive application to explore comparison algorithms
+
+  - <https://csafe.shinyapps.io/cartridgeInvestigatR/>
+
+  - Gives all audiences the ability to interact with comparison algorithms
 
 ### Case Study: Poorly Pre-processed Scans {.smaller .scrollable}
 
@@ -1863,11 +1932,13 @@ Now, I want to talk about a specific cartridge case comparison algorithm that we
 
 . . .
 
-- Computes 19 numerical features for each cartridge case pair
+- For each cartridge case pair:
 
-. . .
+  - Compare full scans & cells **in both directions** (A vs. B & B vs. A)
 
-- Computes similarity score between 0 and 1 for a cartridge case pair using trained statistical model
+  - Computes 19 numerical features for each cartridge case pair
+  
+  - Use statistical model to compute similarity score
 
 ::: {.notes}
 
@@ -1888,11 +1959,73 @@ Over the next few slides, I will first talk through the three groups of features
 
 ## Visual Diagnostic Features {.smaller .scrollable}
 
-- Use visual diagnostic statistics discussed earlier as numerical features
+Summarize visual diagnostic statistics discussed earlier to 9 numerical features
 
-. . .
+::: {.panel-tabset}
 
-<!-- ::: {.scrollable} -->
+### Feature Definitions
+
+***Full Scan Features***
+
+Let $A, B \in \mathbb{R}^{k \times k}$ be two cartridge case scans and $d = A,B$ denote the comparison direction by the reference scan.
+For $d = A$, applying the image registration algorithm results in aligned scan $B^*$ (and $A^*$ for $d = B$).
+
+For $d = A$, the similarities vs. differences ratio given by:
+
+$$r_{A} = \frac{\pmb{1}^T I(|A - B^*| \leq \tau) \pmb{1}}{\pmb{1}^T I(|A - B^*| > \tau) \pmb{1}}$$
+
+where $\pmb{1} \in \mathbb{R}^k$ is a column vector of 1s.
+We also obtain the ratio in the other direction, yielding $r_B$.
+
+The **full scan similarities vs. differences** ratio is:
+
+$$r_{\text{full}} = \frac{1}{2}(r_A + r_B).$$
+
+Next, apply connected components labeling algorithm to $cond$ matrix $|A - B^*| > \tau$ to identify set of neighborhoods of "different" elements, $\pmb{S}_{A} = \{S_{A,1}, S_{A,2}, ..., S_{A, L_A}\}$ where $L_A$ is total number of neighborhoods in direction $d = A$.
+Repeat in other direction, yielding $\pmb{S}_B$.
+
+Compute **average** and **standard deviation of full scan neighborhood sizes** across both comparison directions:
+
+$$\overline{|S|}_{\text{full}} = \frac{1}{L_A + L_B} \sum_{d \in \{A,B\}} \sum_{l = 1}^{L_d} |S_{d, l}|$$
+
+$$s_{\text{full}, |S|} = \sqrt{\frac{1}{L_A + L_B - 1} \sum_{d \in \{A,B\}} \sum _{l = 1}^{L_{d}} (|S|_{d, l} - \overline{|S|}_{\text{full}})^2}.$$
+
+Next, compute correlation between filtered scans $\mathcal{F}_{|A - B| > \tau}(A)$ and $\mathcal{F}_{|A - B| > \tau}(B^*)$ for $d = A$ to obtain $cor_{A, \text{full}, diff}$.
+Repeat in other direction, yielding $cor_{B, \text{full}, diff}$.
+
+The **full scan differences correlation** is given by:
+
+$$cor_{\text{full}, diff} = \frac{1}{2}\left(cor_{A, \text{full}, diff} + cor_{A, \text{full}, diff}\right).$$
+
+***Cell-Based Features***
+
+To accommodate cells, introduce subscript $t = 1,...,T_d$ where $T_d$ is total number of cells in comparison direction $d = A,B$ that contain some non-missing values.
+For example, $A_t$ denotes cell $t$ in scan $A$ and $B^*_t$ its aligned mate in scan $B^*$.
+
+We can use the same procedures described above for the full scan comparisons, but now for each individual cell pair.
+We then compute summary statistics across the cells in both comparison directions to obtain comparison-level features.
+For example, $r_{d,t}$ represents the similarities vs. differences ratio and $\overline{|S|}_{d,t}$ the average labeled neighborhood size for cell $t$ in direction $d$.
+
+The **average** and **standard deviation of the cell-based similarities vs. differences ratio**:
+
+$$\bar{r}_{\text{cell}} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} r_{d,t},$$
+
+$$s_{\text{cell}, r} = \sqrt{\frac{1}{T_A + T_B - 1} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} (r_{d,t} - \bar{r}_{\text{cell}})^2}.$$
+
+The **average** and **standard deviation of the cell-wise neighborhood sizes**:
+
+$$\overline{|S|}_{\text{cell}} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} \overline{S}_{d,t},$$
+
+$$\bar{s}_{\text{cell}, |S|} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} s_{d,t,|S|}.$$
+
+The **average cell-based differences correlation**:
+
+$$\overline{cor}_{\text{cell}, diff} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} cor_{d,t,diff}.$$
+
+For the filter threshold $\tau$, we use one standard deviation of the element-wise distance between a pair of aligned scans/cells.
+For example, for full scans $A$, $B^*$, we compute the standard deviation of the pooled values in $|A - B^*|$.
+
+### Summary
 
 - Features:
 
@@ -1918,7 +2051,8 @@ Over the next few slides, I will first talk through the three groups of features
 </br>
 </br>
 
-<!-- ::: -->
+:::
+
 
 
 ::: {.notes}
@@ -1942,69 +2076,10 @@ So that's the first group of features
 
 :::
 
-### Visual Diagnostic Feature Definitions {.smaller .scrollable}
-
-#### Full Scan Features
-
-Let $A, B \in \mathbb{R}^{k \times k}$ be two cartridge case scans and $d = A,B$ denote the comparison direction by the reference scan.
-For $d = A$, applying the image registration algorithm results in aligned scan $B^*$ (and $A^*$ for $d = B$).
-
-For $d = A$, the similarities vs. differences ratio given by:
-
-$$r_{A} = \frac{\pmb{1}^T I(|A - B^*| \leq \tau) \pmb{1}}{\pmb{1}^T I(|A - B^*| > \tau) \pmb{1}}$$
-
-where $\pmb{1} \in \mathbb{R}^k$ is a column vector of 1s.
-We also obtain the ratio in the other direction, yielding $r_B$.
-
-The **full scan similarities vs. differences** ratio is:
-
-$$r_{\text{full}} = \frac{1}{2}(r_A + r_B)$$.
-
-Next, apply connected components labeling algorithm to $cond$ matrix $|A - B^*| > \tau$ to identify set of neighborhoods of "different" elements, $\pmb{S}_{A} = \{S_{A,1}, S_{A,2}, ..., S_{A, L_A}\}$ where $L_A$ is total number of neighborhoods in direction $d = A$.
-Repeat in other direction, yielding $\pmb{S}_B$.
-
-Compute **average** and **standard deviation of full scan neighborhood sizes** across both comparison directions:
-
-$$\overline{|S|}_{\text{full}} = \frac{1}{L_A + L_B} \sum_{d \in \{A,B\}} \sum_{l = 1}^{L_d} |S_{d, l}|$$
-
-$$s_{\text{full}, |S|} = \sqrt{\frac{1}{L_A + L_B - 1} \sum_{d \in \{A,B\}} \sum _{l = 1}^{L_{d}} (|S|_{d, l} - \overline{|S|}_{\text{full}})^2}$$.
-
-Next, compute correlation between filtered scans $\mathcal{F}_{|A - B| > \tau}(A)$ and $\mathcal{F}_{|A - B| > \tau}(B^*)$ for $d = A$ to obtain $cor_{A, \text{full}, diff}$.
-Repeat in other direction, yielding $cor_{B, \text{full}, diff}$.
-
-The **full scan differences correlation** is given by:
-
-$$cor_{\text{full}, diff} = \frac{1}{2}\left(cor_{A, \text{full}, diff} + cor_{A, \text{full}, diff}\right)$$.
-
-#### Cell-Based Features
-
-To accommodate cells, introduce subscript $t = 1,...,T_d$ where $T_d$ is total number of cells in comparison direction $d = A,B$ that contain some non-missing values.
-For example, $A_t$ denotes cell $t$ in scan $A$ and $B^*_t$ its aligned mate in scan $B^*$.
-
-We can use the same procedures described above for the full scan comparisons, but now for each individual cell pair.
-We then compute summary statistics across the cells in both comparison directions to obtain comparison-level features.
-For example, $r_{d,t}$ represents the similarities vs. differences ratio and $\overline{|S|}_{d,t}$ the average labeled neighborhood size for cell $t$ in direction $d$.
-
-The **average** and **standard deviation of the cell-based similarities vs. differences ratio**:
-
-$$\bar{r}_{\text{cell}} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} r_{d,t}$$,
-
-$$s_{\text{cell}, r} = \sqrt{\frac{1}{T_A + T_B - 1} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} (r_{d,t} - \bar{r}_{\text{cell}})^2}$$.
-
-The **average** and **standard deviation of the cell-wise neighborhood sizes**:
-
-$$\overline{|S|}_{\text{cell}} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} \overline{S}_{d,t}$$,
-
-$$\bar{s}_{\text{cell}, |S|} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} s_{d,t,|S|}$$.
-
-The **average cell-based differences correlation**:
-
-$$\overline{cor}_{\text{cell}, diff} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} cor_{d,t,diff}$$.
-
-For the filter threshold $\tau$, we use one standard deviation of the element-wise distance between a pair of aligned scans/cells.
-For example, for full scans $A$, $B^*$, we compute the standard deviation of the pooled values in $|A - B^*|$.
 
 ## Registration-based Features {.smaller .scrollable}
+
+Compute summary statistics of full-scan and cell-based registration results
 
 - For a matching cartridge case pair...
 
@@ -2012,9 +2087,41 @@ For example, for full scans $A$, $B^*$, we compute the standard deviation of the
   
   - Cells should "agree" on a particular registration
 
-- Compute summary statistics of full-scan and cell-based registration results
+::: {.panel-tabset}
 
-. . .
+### Feature Definitions
+
+To compute the registration-based features, we consider the estimated registrations from the full scan comparisons $(\theta_d^*, m_d^*, n_d^*, CCF_{\max,d})$ and cell-based comparisons $\{(\theta_{d,t}^*, m_{d,t}*, n_{d,t}^*, CCF_{\max,d,t}) : t = 1,...,T_d\}$ for both comparison directions $d = A,B$.
+
+Using the full scan estimated registrations, we compute the pairwise-complete correlation $cor_{\text{full}, d}$ between $A$ and $B^*$ when $d = A$ and $B$ and $A^*$ when $d = B$.
+The **full scan pairwise-complete correlation** is given by:
+
+$$cor_{\text{full}} = \frac{1}{2}\left(cor_{\text{full,A}} + cor_{\text{full, B}}\right).$$
+
+We also compute the pairwise-complete correlation for each cell pair, resulting in the set $\{cor_{\text{cell},d,t} : t = 1,...,T_d, d = A,B\}$.
+The **average** and **standard deviation of the cell-based pairwise-complete correlations** are given by:
+
+$$\overline{cor}_{\text{cell}} = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t=1}^{T_d} cor_{d,t},$$
+
+$$s_{cor} = \sqrt{\frac{1}{T_A + T_B - 1} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} (cor_{d,t} - \overline{cor}_{\text{cell}})^2}.$$
+
+Finally, we compute the **standard deviation of the cell-based estimated registrations** as:
+
+$$s_{\theta^*} = \sqrt{\frac{1}{T_A + T_B - 1} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} (\theta_{d,t}^* - \bar{\theta}^*)^2}$$
+
+$$s_{m^*} = \sqrt{\frac{1}{T_A + T_B - 1} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} (m_{d,t}^* - \bar{m}^*)^2}$$
+
+$$s_{n^*} = \sqrt{\frac{1}{T_A + T_B - 1} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} (n_{d,t}^* - \bar{n}^*)^2}$$
+
+where
+
+$$\bar{m}^* = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} m_{d,t}^*$$
+
+$$\bar{n}^* = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} n_{d,t}^*$$
+
+$$\bar{\theta}^* = \frac{1}{T_A + T_B} \sum_{d \in \{A,B\}} \sum_{t = 1}^{T_d} \theta_{d,t}^*.$$
+
+### Summary
 
 - Features:
 
@@ -2025,6 +2132,8 @@ For example, for full scans $A$, $B^*$, we compute the standard deviation of the
   - Standard deviation of cell-based registration values (horizontal/vertical translations & rotation), $s_{m^*}, s_{n^*}, s_{\theta^*}$
 
 ![](images/featureDensity_registration.png){fig-align="center" width="80%"}
+
+:::
 
 ::: {.notes}
 
@@ -2050,15 +2159,17 @@ Again, I show the distributions of these features at the bottom of the slide, wh
 
 ## Density-based Features {.smaller .scrollable}
 
+Apply Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm to the cell-based registration results [@dbscan;@zhang_convergence_2021]
+
 - For a matching cartridge case pair...
 
   - Cells should "agree" on a particular registration
   
   - The estimated registrations between the two comparison directions should be opposites
 
-. . .
+::: {.panel-tabset}
 
-- Apply Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm to the cell-based registration results [@dbscan;@zhang_convergence_2021]
+### Feature Definitions
 
 ```{r eval=FALSE}
 K013sA1_processed <- x3p_read("data/K013sA1_processed.x3p")
@@ -2169,6 +2280,24 @@ targetVsRef_8x8 %>%
 
 ![](images/densityBasedFeatureExample.png){fig-align="center" width=700}
 
+To compute the DBSCAN clusters in comparison direction $d \in \{A,B\}$, we:
+
+1. Use a 2D KDE to determine the rotation $\hat{\theta}_d$ at which the estimated cell translations $\{[m_{d,t,\theta}^*, n_{d,t\theta}^*] : \theta \in \pmb{\Theta} \}$ achieve the highest density.
+
+2. Apply the DBSCAN algorithm to these highest-density translations, resulting in cluster $\pmb{C}_d \subset \{[m_{d,t,\hat{\theta}_d}^*, n_{d,t,\hat{\theta}_d}^*]\}$.
+
+We then compute the four density-based features using $\pmb{C}_A$ and $\pmb{C}_B$:
+
+$$C = \frac{1}{2}\left(|\pmb{C}_A| + |\pmb{C}_B|\right)$$
+
+$$C_0 = I\left(|\pmb{C}_A| > 0\text{ and }|\pmb{C}_B| > 0\right)$$
+
+$$\Delta_\theta = |\hat{\theta}_A + \hat{\theta}_B|$$
+
+$$\Delta_{\text{trans}} = \sqrt{(\hat{m}_A + \hat{m}_B)^2 + (\hat{n}_A + \hat{n}+B)^2}$$ 
+
+### Summary
+
 - Features: 
 
   - DBSCAN cluster indicator, $C_0$
@@ -2180,6 +2309,8 @@ targetVsRef_8x8 %>%
   - Root sum of squares of the cluster-estimated translations, $\Delta_{\text{trans}}$
 
 ![](images/featureDensity_densityBased.png){fig-align="center" width="80%"}
+
+:::
 
 ::: {.notes}
 
@@ -2232,22 +2363,6 @@ The takeaway from this plot is that these features also distinguish between matc
 DBSCAN Algorithm Terminology. Suppose $\epsilon = 3$ and $minPts = 2$.
 :::
 
-To compute the DBSCAN clusters in comparison direction $d \in \{A,B\}$, we:
-
-1. Use a 2D KDE to determine the rotation $\hat{\theta}_d$ at which the estimated cell translations $\{[m_{d,t,\theta}^*, n_{d,t\theta}^*] : \theta \in \pmb{\Theta} \}$ achieve the highest density.
-
-2. Apply the DBSCAN algorithm to these highest-density translations, resulting in cluster $\pmb{C}_d \subset \{[m_{d,t,\hat{\theta}_d}^*, n_{d,t,\hat{\theta}_d}^*]\}$.
-
-We then compute the four density-based features using $\pmb{C}_A$ and $\pmb{C}_B$:
-
-$$C = \frac{1}{2}\left(|\pmb{C}_A| + |\pmb{C}_B|\right)$$
-
-$$C_0 = I\left(|\pmb{C}_A| > 0\text{ and }|\pmb{C}_B| > 0\right)$$
-
-$$\Delta_\theta = |\hat{\theta}_A + \hat{\theta}_B|$$
-
-$$\Delta_{\text{trans}} = \sqrt{(\hat{m}_A + \hat{m}_B)^2 + (\hat{n}_A + \hat{n}+B)^2}$$ 
-
 ## ACES Statistical Model {.smaller .scrollable}
 
 - Compute the 19 ACES features, $\pmb{F}_{ACES}$, for each pairwise comparison
@@ -2256,7 +2371,7 @@ $$\Delta_{\text{trans}} = \sqrt{(\hat{m}_A + \hat{m}_B)^2 + (\hat{n}_A + \hat{n}
 
 . . .
 
-- Train random logistic regression using 21,945 pairwise comparisons from 210 scans
+- Compare random logistic regression and random forest trained on 21,945 pairwise comparisons
 
   - Consider three, nested feature sets:
   
@@ -2274,7 +2389,7 @@ $$\Delta_{\text{trans}} = \sqrt{(\hat{m}_A + \hat{m}_B)^2 + (\hat{n}_A + \hat{n}
 
 . . .
 
-- Test model on 44,850 pairwise comparisons from 300 scans
+- Test model on 44,850 pairwise comparisons
 
   - Compute true positive and true negative rates for each model
   
@@ -2328,29 +2443,15 @@ For each cartridge case scan pair $(A,B)$:
 10. Using the high-density registrations to compute 4 density-based features $(C_0, C, \Delta_{\text{trans}}, \Delta_\theta)$.
 
 
-## Classification Results {.smaller .scrollable}
+## Classification Results {.smaller}
 
-![](images/classifResultsPlt_trainTest.png){fig-align="center"  width="90%"}
+![](images/classifResultsPlt-trainTest.png){fig-align="center"  width=700}
 
 **Takeaways:**
 
-- Accuracy metrics improve with progressively larger feature sets
+- Test accuracy metrics improve with progressively larger feature sets
 
 - Comparable performance between random forest (RF) and logisitic regression (LR) classifiers
-
-- Large difference in train/test True Positive rates
-
-  - Class imbalance in data: 90% of train and 93% of test data are non-match comparisons.
-
-| Source | True Pos. (%) | True Neg. (%) | Overall Inconcl. (%) | Overall Acc. (%) |
-| ------ | -------------: | -------------: | -------------: | -----------: |
-| ACES LR | 95.9 | 97.8 | 0.0 | 97.7 |
-| CMC Method | 74.2 | 97.7 | 0.0 | 96.1 |
-| Ames I | 99.6 | 65.2 | 22.9 | |
-
-- CMC method results based on our implementation in `cmcR` package [@cmcR].
-
-- Ames I [@baldwin] compared quartets (3 to 1) and considered inconclusives.
 
 ::: {.notes}
 
@@ -2389,6 +2490,22 @@ Keep in mind though that we selected this model because it balances these rates 
 There isn't a guarantee that the test classifications will also be balanced.
 
 :::
+
+### Test Results Table {.smaller .scrollable}
+
+| Source | True Pos. (%) | True Neg. (%) | Overall Inconcl. (%) | Overall Acc. (%) |
+| ------ | -------------: | -------------: | -------------: | -----------: |
+| ACES LR | 95.9 | 97.8 | 0.0 | 97.7 |
+| CMC Method | 74.2 | 97.7 | 0.0 | 96.1 |
+| Ames I | 99.6 | 65.2 | 22.9 | |
+
+- CMC method results based on our implementation in `cmcR` package [@cmcR].
+
+- Ames I [@baldwin] compared quartets (3 to 1) and considered inconclusives.
+
+- Large difference in train/test True Positive rates
+
+  - Class imbalance in data: 90% of train and 93% of test data are non-match comparisons.
 
 ### ROC Curves {.smaller .scrollable}
 
@@ -2466,11 +2583,15 @@ This might contribute to our models' low true positive rate we noted on the last
 
 ![](images/misclassifPlt.png){fig-align="center"  width=1000}
 
-## Implementation: `scored` {.smaller}
+## Implementation {.smaller}
 
 - `scored` package contains feature calculation/similarity scoring functionality
 
 ```{r,echo=TRUE,eval=FALSE}
+comparisonData <- comparison_cellBased(reference = x3p1,target = x3p2,
+                                       thetas = seq(-30,30,by = 3),
+                                       numCells = c(4,4))
+
 comparisonData %>%
   group_by(direction) %>%
   scored::feature_aLaCarte(features = c("visual","density"),
@@ -2489,7 +2610,7 @@ comparisonData %>%
 <!--   - Visual diagnostic statistics distinguish between match and non-match comparisons -->
 
 
-## Conclusions & Future Work {.smaller .scrollable}
+## Conclusions {.smaller .scrollable}
 
 ::: {.notes}
 
@@ -2529,13 +2650,15 @@ We need to devise additional "stress tests" so that we understand the strengths 
 
 - Accessible and effective algorithms lead to a more equitable and trustworthy justice system
 
-Future work:
+## Future Work {.smaller .scrollable}
 
 - Generalizability of ACES
   
   - Additional stress tests (firearm and ammunition make/model, degradation levels)
   
     - Consistency of tool marks on cartridge case surfaces across different factors.
+    
+  - Applicability to other regions of cartridge case (firing pin impression, etc.)
   
   - What is an adequate definition of "relevant population" for F & T evidence?
       
@@ -2563,7 +2686,7 @@ Future work:
     
     - Texture identification and segmentation methods (Gabor wavelets, autoencoder/generative adversarial NNs)
 
-- How useful are our tools to others?
+- How useful are our tools?
 
   - Study how others use `cartridgeInvestigatR`
 

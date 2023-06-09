@@ -432,7 +432,7 @@ Obtain an objective measure of similarity between two cartridge cases
 
 . . .
 
-- **Step 3**: Combine numerical features into a single similarity *score*, $s$ (e.g., $s \in [0,1]$, $s \in \mathbb{Z}^+$)
+- **Step 3**: Combine numerical features into a single similarity *score*
 
 . . .
 
@@ -1461,7 +1461,7 @@ We have found a comparison plot for two full scans gives us a clear, high-level 
 
   1. There should be (many) more similarities than differences
   
-  2. The different regions should be relatively small 
+  2. The different regions should be relatively small (in area)
 
   3. The surface values of the different regions should follow similar trends
 
@@ -1760,7 +1760,7 @@ Again, this ratio provides a quantitative measure of the similarity between two 
 
 ### Different Region Size {.smaller}
 
-2. The different regions should be relatively small 
+2. The different regions should be relatively small (in area)
 
 > *Size of the different regions*
 
@@ -2294,7 +2294,7 @@ $$C_0 = I\left(|\pmb{C}_A| > 0\text{ and }|\pmb{C}_B| > 0\right)$$
 
 $$\Delta_\theta = |\hat{\theta}_A + \hat{\theta}_B|$$
 
-$$\Delta_{\text{trans}} = \sqrt{(\hat{m}_A + \hat{m}_B)^2 + (\hat{n}_A + \hat{n}+B)^2}$$ 
+$$\Delta_{\text{trans}} = \sqrt{(\hat{m}_A + \hat{m}_B)^2 + (\hat{n}_A + \hat{n}_B)^2}$$ 
 
 ### Summary
 
@@ -2371,7 +2371,7 @@ DBSCAN Algorithm Terminology. Suppose $\epsilon = 3$ and $minPts = 2$.
 
 . . .
 
-- Compare random logistic regression and random forest trained on 21,945 pairwise comparisons
+- Compare random logistic regression and random forest trained on 21,945 pairwise comparisons (from 210 scans)
 
   - Consider three, nested feature sets:
   
@@ -2389,7 +2389,7 @@ DBSCAN Algorithm Terminology. Suppose $\epsilon = 3$ and $minPts = 2$.
 
 . . .
 
-- Test model on 44,850 pairwise comparisons
+- Test model on 44,850 pairwise comparisons (from 300 scans)
 
   - Compute true positive and true negative rates for each model
   
@@ -2443,15 +2443,29 @@ For each cartridge case scan pair $(A,B)$:
 10. Using the high-density registrations to compute 4 density-based features $(C_0, C, \Delta_{\text{trans}}, \Delta_\theta)$.
 
 
-## Classification Results {.smaller}
+## Classification Results {.smaller .scrollable}
 
-![](images/classifResultsPlt-trainTest.png){fig-align="center"  width=700}
+![](images/classifResultsPlt-trainTest.png){fig-align="center"  height=400}
 
 **Takeaways:**
 
 - Test accuracy metrics improve with progressively larger feature sets
 
-- Comparable performance between random forest (RF) and logisitic regression (LR) classifiers
+- Comparable performance between random forest (RF) and logistic regression (LR) classifiers
+
+- Large difference in train/test True Positive rates
+
+  - Class imbalance in data: 90% of train and 93% of test data are non-match comparisons.
+
+| Source | True Pos. (%) | True Neg. (%) | Overall Inconcl. (%) | Overall Acc. (%) |
+| ------ | -------------: | -------------: | -------------: | -----------: |
+| ACES LR | 95.9 | 97.8 | 0.0 | 97.7 |
+| Ames I | 99.6 | 65.2 | 22.9 | |
+
+<!-- | CMC Method | 74.2 | 97.7 | 0.0 | 96.1 | -->
+<!-- - CMC method results based on our implementation in `cmcR` package [@cmcR]. -->
+
+- Ames I [@baldwin] compared quartets (3 to 1) and considered inconclusives.
 
 ::: {.notes}
 
@@ -2490,22 +2504,6 @@ Keep in mind though that we selected this model because it balances these rates 
 There isn't a guarantee that the test classifications will also be balanced.
 
 :::
-
-### Test Results Table {.smaller .scrollable}
-
-| Source | True Pos. (%) | True Neg. (%) | Overall Inconcl. (%) | Overall Acc. (%) |
-| ------ | -------------: | -------------: | -------------: | -----------: |
-| ACES LR | 95.9 | 97.8 | 0.0 | 97.7 |
-| CMC Method | 74.2 | 97.7 | 0.0 | 96.1 |
-| Ames I | 99.6 | 65.2 | 22.9 | |
-
-- CMC method results based on our implementation in `cmcR` package [@cmcR].
-
-- Ames I [@baldwin] compared quartets (3 to 1) and considered inconclusives.
-
-- Large difference in train/test True Positive rates
-
-  - Class imbalance in data: 90% of train and 93% of test data are non-match comparisons.
 
 ### ROC Curves {.smaller .scrollable}
 
